@@ -131,15 +131,20 @@ export async function generateContent(
     const generateUrl = `${GEMINI_API_BASE}/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     // Build the parts array with text and file references
-    const parts: Array<{ text?: string; fileData?: FileData }> = [
+    const parts: any[] = [
         {
             text: `Please proofread and enhance the following draft note. For any audio files, generate well-structured notes with clear sections, summaries, and key points. Integrate information from all attachments (images, PDFs, audio) to create comprehensive, well-organized content.\n\nDraft Note:\n${noteContent}`
         }
     ];
 
-    // Add file references
+    // Add file references with correct snake_case format for Gemini API
     for (const file of fileData) {
-        parts.push({ fileData: file });
+        parts.push({ 
+            file_data: {
+                file_uri: file.fileUri,
+                mime_type: file.mimeType
+            }
+        });
     }
 
     const requestBody = {
