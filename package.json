@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-ai-note-enhancer",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Enhance your notes using Google Gemini AI with multi-modal support",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
