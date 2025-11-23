@@ -5,5 +5,5 @@ export interface AINoteSettings {
 
 export const DEFAULT_SETTINGS: AINoteSettings = {
     apiKey: '',
-    modelName: 'gemini-1.5-pro'
+    modelName: 'gemini-2.5-pro'
 }
