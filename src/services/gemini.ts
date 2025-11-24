@@ -149,6 +149,11 @@ export async function generateContent(
 		(customPrompt || "Enhance and organize the following note content.") +
 		formatInstructions;
 
+	console.log("=== AI Note Enhancement Request ===");
+	console.log("Final prompt for generation:", finalPrompt);
+	console.log("Note content length:", noteContent.length);
+	console.log("Number of files:", fileData.length);
+
 	// Build the parts array with text and file references
 	const parts: any[] = [
 		{
@@ -158,6 +163,7 @@ export async function generateContent(
 
 	// Add file references with correct snake_case format for Gemini API
 	for (const file of fileData) {
+		console.log("Adding file:", file.fileUri, "type:", file.mimeType);
 		parts.push({
 			file_data: {
 				file_uri: file.fileUri,
@@ -173,6 +179,9 @@ export async function generateContent(
 			},
 		],
 	};
+
+	console.log("Full request body:", JSON.stringify(requestBody, null, 2));
+	console.log("API URL:", generateUrl.replace(/key=.*/, "key=<hidden>"));
 
 	try {
 		const response = await requestUrl({
