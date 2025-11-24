@@ -1,94 +1,209 @@
-# Obsidian Sample Plugin
+# AI Note Enhancement Plugin for Obsidian
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+Transform your draft notes into comprehensive, well-structured knowledge with the power of Google Gemini AI. This plugin analyzes your note content along with embedded files (images, PDFs, audio) to create enhanced, organized notes following Linking Your Thinking (LYT) methodology and Zettelkasten principles.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+-   **🎯 Smart Note Enhancement**: Automatically enhance draft notes with AI-powered analysis and organization
+-   **📎 Multi-Format Support**: Process images, PDFs, and audio files embedded in your notes
+-   **🎨 Multiple Output Formats**: Choose from Enhanced, Structured, or Analytical output styles
+-   **✍️ Customizable Prompts**: Tailor the AI's behavior to match your note-taking methodology
+-   **🔗 LYT & Zettelkasten**: Built-in support for advanced note-taking methodologies
+-   **📊 Concept Mapping**: Automatic generation of mermaid diagrams to visualize relationships
+-   **🎵 Audio Transcription**: Process audio files and generate structured notes from transcriptions
+-   **🔖 Smart Organization**: Automatic tag suggestions, hierarchical structure, and key takeaways
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+### From Obsidian Community Plugins (Recommended)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+_Coming soon - pending approval_
 
-## Releasing new releases
+### Manual Installation
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1. Download the latest release files (`main.js`, `manifest.json`, `styles.css`)
+2. Create a folder in your vault: `.obsidian/plugins/obsidian-ai-note-enhancement/`
+3. Copy the downloaded files into this folder
+4. Reload Obsidian
+5. Enable the plugin in Settings → Community plugins
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## Setup
 
-## Adding your plugin to the community plugin list
+1. Get a Google Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Open Obsidian Settings → AI Note Enhancer
+3. Enter your Gemini API key
+4. Choose your preferred model (gemini-2.5-pro recommended)
+5. Select your desired output format
+6. Optionally customize the enhancement prompt
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## Usage
 
-## How to use
+### Basic Usage
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+1. Create or open a note with draft content
+2. Optionally embed files (audio, images, PDFs) using `![[filename]]` syntax
+3. Run the command: `Enhance Note with AI` (Ctrl/Cmd+P to open command palette)
+4. Wait for the AI to process your content and attachments
+5. Enhanced content will be appended to your note
 
-## Manually installing the plugin
+### Output Formats
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+**Enhanced** (Default)
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint ./src/`
+-   Clean, organized structure
+-   Well-formatted markdown
+-   First-person perspective
 
-## Funding URL
+**Structured**
 
-You can include funding URLs where people who use your plugin can financially support it.
+-   Executive summary at the top
+-   Hierarchical sections with bullet points
+-   Key takeaways section
+-   Suggested tags
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+**Analytical**
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+-   Deep analysis with insights
+-   Main themes and concepts
+-   Critical thinking and connections
+-   Questions for exploration
+-   Mermaid concept maps
+
+### Supported File Types
+
+-   **Audio**: MP3, WAV, M4A, WebM
+-   **Images**: PNG, JPG, JPEG
+-   **Documents**: PDF
+
+## Settings
+
+### Basic Settings
+
+-   **Gemini API Key**: Your Google Gemini API key
+-   **Model Name**: Gemini model to use (gemini-2.5-pro, gemini-1.5-pro, etc.)
+-   **Output Format**: Choose between Enhanced, Structured, or Analytical
+
+### Advanced Settings
+
+-   **Custom Enhancement Prompt**: Customize the AI's behavior and output style
+-   **Include Original Content**: Toggle to append original draft at the end for reference
+
+## Example Use Cases
+
+### 📝 Meeting Notes with Audio
+
+Record or import meeting audio, add a few bullet points, run enhancement to get:
+
+-   Structured meeting notes with key decisions
+-   Action items and assignments
+-   Important details (names, dates, numbers)
+-   Concept relationships
+
+### 📚 Research Notes with PDFs
+
+Embed research PDFs and images, add initial thoughts, enhance to get:
+
+-   Comprehensive literature analysis
+-   Key concepts and connections
+-   Critical insights
+-   Suggested links to related ideas
+
+### 💡 Quick Ideas to Detailed Notes
+
+Jot down rough ideas, enhance to get:
+
+-   Organized, hierarchical structure
+-   Expanded explanations
+-   Related concepts
+-   Tags for organization
+
+## Privacy & Security
+
+-   All processing happens via Google Gemini API
+-   Your API key is stored locally in Obsidian
+-   No data is stored or logged by this plugin
+-   Files are temporarily uploaded to Google for processing
+-   Review [Google's AI API Terms](https://ai.google.dev/terms) for details
+
+## Troubleshooting
+
+### API Key Issues
+
+-   Ensure your API key is valid and has access to Gemini API
+-   Check you haven't exceeded API quota limits
+
+### File Upload Failures
+
+-   Large files may take longer to process (be patient)
+-   Some file formats might not be supported by the API
+-   Check your internet connection
+
+### Enhancement Not Working
+
+-   Verify you have note content or embedded files
+-   Check console (Ctrl/Cmd+Shift+I) for error messages
+-   Try with a smaller note first
+
+## Development
+
+### Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/Alex-Shanyi-Yuan/obsidian-ai-note-enhancement.git
+cd obsidian-ai-note-enhancement
+
+# Install dependencies
+npm install
+
+# Development build (watch mode)
+npm run dev
+
+# Production build
+npm run build
 ```
 
-If you have multiple URLs, you can also do:
+### Project Structure
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+```
+├── main.ts                 # Plugin entry point
+├── src/
+│   ├── settings.ts        # Settings interface and defaults
+│   ├── services/
+│   │   └── gemini.ts      # Gemini API integration
+│   └── utils/
+│       └── file-processing.ts  # File handling utilities
+├── manifest.json          # Plugin manifest
+└── styles.css            # Plugin styles
 ```
 
-## API Documentation
+## Contributing
 
-See https://github.com/obsidianmd/obsidian-api
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## Credits
+
+Inspired by:
+
+-   [Smart Memos](https://github.com/Mossy1022/Smart-Memos) - For note generation concepts
+-   Linking Your Thinking (LYT) methodology
+-   Zettelkasten principles
+
+## License
+
+MIT License - See LICENSE file for details
+
+## Support
+
+-   🐛 [Report Issues](https://github.com/Alex-Shanyi-Yuan/obsidian-ai-note-enhancement/issues)
+-   💡 [Feature Requests](https://github.com/Alex-Shanyi-Yuan/obsidian-ai-note-enhancement/issues)
+-   📖 [Documentation](https://github.com/Alex-Shanyi-Yuan/obsidian-ai-note-enhancement)
+
+---
+
+Made with ❤️ for the Obsidian community
